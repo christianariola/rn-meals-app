@@ -1,5 +1,6 @@
 import { useLayoutEffect } from "react";
-import { Text, View, Image, StyleSheet, ScrollView, Button } from "react-native";
+import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
+import IconButton from "../components/IconButton";
 import List from "../components/MealDetails/List";
 import Subtitle from "../components/MealDetails/Subtitle";
 import MealDetailsCard from "../components/MealDetailsCard";
@@ -11,16 +12,22 @@ const MealDetails = ({ route, navigation }) => {
     const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
     const headerButtonHandler = () => {
-        console.log('Presed!')
-    }
+        console.log("Pressed!");
+    };
 
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                return <Button title="Tap me!" onPress={headerButtonHandler} />
-            }
-        })
-    }, [navigation, headerButtonHandler])
+                return (
+                    <IconButton
+                        icon="star"
+                        color="white"
+                        onPress={headerButtonHandler}
+                    />
+                );
+            },
+        });
+    }, [navigation, headerButtonHandler]);
 
     return (
         <ScrollView style={styles.rootContainer}>
@@ -55,7 +62,7 @@ export default MealDetails;
 
 const styles = StyleSheet.create({
     rootContainer: {
-        marginBottom: 32
+        marginBottom: 32,
     },
     image: {
         width: "100%",
@@ -72,9 +79,9 @@ const styles = StyleSheet.create({
         color: "white",
     },
     listContainer: {
-        width: '80%'
+        width: "80%",
     },
     listOuterContainer: {
-        alignItems: 'center'
-    }
+        alignItems: "center",
+    },
 });
